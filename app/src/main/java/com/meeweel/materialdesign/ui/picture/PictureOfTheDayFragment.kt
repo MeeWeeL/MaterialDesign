@@ -13,9 +13,12 @@ import androidx.lifecycle.ViewModelProviders
 import coil.api.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.chip.Chip
 import com.meeweel.materialdesign.R
 import com.meeweel.materialdesign.ui.MainActivity
 import com.meeweel.materialdesign.ui.chips.ChipsFragment
+import kotlinx.android.synthetic.main.bottom_sheet_layout.*
+import kotlinx.android.synthetic.main.fragment_chips.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class PictureOfTheDayFragment : Fragment() {
@@ -47,6 +50,26 @@ class PictureOfTheDayFragment : Fragment() {
             })
         }
         setBottomAppBar(view)
+        picture_choose_chips.setOnCheckedChangeListener { chipGroup, position ->
+            picture_choose_chips.findViewById<Chip>(position)?.let {
+                Toast.makeText(context, "Выбран ${it.text}", Toast.LENGTH_SHORT).show()
+                when (it) {
+                    todayChip -> {
+                            viewModel.getData()
+                                .observe(viewLifecycleOwner, Observer<PictureOfTheDayData> { renderData(it) })
+                        }
+                    yesterdayChip -> {
+                            viewModel.getYesterdayData()
+                                .observe(viewLifecycleOwner, Observer<PictureOfTheYesterdayData> { renderYesterday(it) })
+                        }
+                    DaysAgoChip -> {
+                            viewModel.get2DaysAgoData()
+                                .observe(viewLifecycleOwner, Observer<PictureOfThe2DaysAgoData> { render2DaysAgo(it) })
+                        }
+
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -83,11 +106,72 @@ class PictureOfTheDayFragment : Fragment() {
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
                 }
+                bottom_sheet_description.text = serverResponseData.explanation
+                bottom_sheet_description_header.text = serverResponseData.title
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
             is PictureOfTheDayData.Loading -> {
                 //showLoading()
             }
             is PictureOfTheDayData.Error -> {
+                //showError(data.error.message)
+                toast(data.error.message)
+            }
+        }
+    }
+    private fun renderYesterday(data: PictureOfTheYesterdayData) {
+        when (data) {
+            is PictureOfTheYesterdayData.Success -> {
+                val serverResponseData = data.serverResponseData
+                val url = serverResponseData.url
+                if (url.isNullOrEmpty()) {
+                    //showError("Сообщение, что ссылка пустая")
+                    toast("Link is empty")
+                } else {
+                    //showSuccess()
+                    image_view.load(url) {
+                        lifecycle(this@PictureOfTheDayFragment)
+                        error(R.drawable.ic_load_error_vector)
+                        placeholder(R.drawable.ic_no_photo_vector)
+                    }
+                }
+                bottom_sheet_description.text = serverResponseData.explanation
+                bottom_sheet_description_header.text = serverResponseData.title
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+            is PictureOfTheYesterdayData.Loading -> {
+                //showLoading()
+            }
+            is PictureOfTheYesterdayData.Error -> {
+                //showError(data.error.message)
+                toast(data.error.message)
+            }
+        }
+    }
+    private fun render2DaysAgo(data: PictureOfThe2DaysAgoData) {
+        when (data) {
+            is PictureOfThe2DaysAgoData.Success -> {
+                val serverResponseData = data.serverResponseData
+                val url = serverResponseData.url
+                if (url.isNullOrEmpty()) {
+                    //showError("Сообщение, что ссылка пустая")
+                    toast("Link is empty")
+                } else {
+                    //showSuccess()
+                    image_view.load(url) {
+                        lifecycle(this@PictureOfTheDayFragment)
+                        error(R.drawable.ic_load_error_vector)
+                        placeholder(R.drawable.ic_no_photo_vector)
+                    }
+                }
+                bottom_sheet_description.text = serverResponseData.explanation
+                bottom_sheet_description_header.text = serverResponseData.title
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+            is PictureOfThe2DaysAgoData.Loading -> {
+                //showLoading()
+            }
+            is PictureOfThe2DaysAgoData.Error -> {
                 //showError(data.error.message)
                 toast(data.error.message)
             }
@@ -123,7 +207,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun Fragment.toast(string: String?) {
         Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
-            setGravity(Gravity.BOTTOM, 0, 250)
+            setGravity(Gravity.CENTER,0,0)
             show()
         }
     }

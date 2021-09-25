@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f6f6fa"
+    android:layout_height="wrap_content"
+    android:background="#D3D3D3"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="50dp"
-    android:visibility="gone"
+    app:behavior_peekHeight="120dp"
+    android:visibility="visible"
+    android:paddingBottom="85dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <View
@@ -16,7 +17,7 @@
         android:layout_width="25dp"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        android:background="#663b4351"
+        android:background="#4B0082"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="#111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
