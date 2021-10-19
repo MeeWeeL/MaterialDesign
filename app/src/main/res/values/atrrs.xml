@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyAttr">
+        <attr name="textColorConnected" format="reference"/>
+        <attr name="textColorDisConnected" format="reference"/>
+    </declare-styleable>
+</resources>

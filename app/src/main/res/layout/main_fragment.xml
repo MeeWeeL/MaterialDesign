@@ -55,21 +55,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Today" />
+                    android:text="@string/today" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/yesterdayChip"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yesterday" />
+                    android:text="@string/yesterday" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/DaysAgoChip"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2 Days Ago" />
+                    android:text="@string/_2_days_ago" />
             </com.google.android.material.chip.ChipGroup>
             <geekbarains.material.util.EquilateralImageView
                 android:id="@+id/image_view"
