@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import com.meeweel.materialdesign.R
+import com.meeweel.materialdesign.ui.ThemeHolder
 import kotlinx.android.synthetic.main.fragment_chips.*
 
 class ChipsFragment : Fragment() {
@@ -16,6 +17,7 @@ class ChipsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.setTheme(ThemeHolder.theme)
         return inflater.inflate(R.layout.fragment_chips, container, false)
     }
 
