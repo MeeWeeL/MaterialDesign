@@ -1,6 +1,7 @@
 package com.meeweel.materialdesign.ui
 
 import android.os.Bundle
+import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity
 import com.meeweel.materialdesign.R
 import com.meeweel.materialdesign.ui.picture.PictureOfTheDayFragment
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
     }
-    fun changeTheme(th: Int) {
+    fun changeTheme(@StyleRes th: Int) {
         ThemeHolder.theme = th
         recreate()
     }

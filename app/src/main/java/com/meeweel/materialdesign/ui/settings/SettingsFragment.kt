@@ -8,6 +8,7 @@ import android.widget.Switch
 import androidx.fragment.app.Fragment
 import com.meeweel.materialdesign.R
 import com.meeweel.materialdesign.databinding.SettingsFragmentLayoutBinding
+import com.meeweel.materialdesign.ui.MainActivity
 import com.meeweel.materialdesign.ui.ThemeHolder
 import com.meeweel.materialdesign.ui.picture.PictureOfTheDayFragment
 
@@ -21,7 +22,6 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.setTheme(ThemeHolder.theme)
         _binding = SettingsFragmentLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -31,16 +31,19 @@ class SettingsFragment : Fragment() {
         val switch: Switch = binding.switcher
         if (ThemeHolder.theme == R.style.SecondTheme) switch.isChecked = true
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked){
-                ThemeHolder.theme = R.style.SecondTheme
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.container, PictureOfTheDayFragment.newInstance())
-                    ?.commitNow()
-            }else{
-                ThemeHolder.theme = R.style.DefaultTheme
+            (requireActivity() as? MainActivity)?.let {
+                if (isChecked) {
+                    it.changeTheme(R.style.SecondTheme)
+                    activity?.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.container, PictureOfTheDayFragment.newInstance())
+                        ?.commitNow()
+                } else {
+                    it.changeTheme(R.style.DefaultTheme)
+                    activity?.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.container, PictureOfTheDayFragment.newInstance())
+                        ?.commitNow()
+                }
             }
         }
-    }
-    private fun setCheckedChangeListener() {
     }
 }
