@@ -62,11 +62,11 @@ class PictureOfTheDayFragment : Fragment() {
                         }
                     yesterdayChip -> {
                             viewModel.getYesterdayData()
-                                .observe(viewLifecycleOwner, Observer<PictureOfTheYesterdayData> { renderYesterday(it) })
+                                .observe(viewLifecycleOwner, Observer<PictureOfTheDayData> { renderData(it) })
                         }
                     DaysAgoChip -> {
                             viewModel.get2DaysAgoData()
-                                .observe(viewLifecycleOwner, Observer<PictureOfThe2DaysAgoData> { render2DaysAgo(it) })
+                                .observe(viewLifecycleOwner, Observer<PictureOfTheDayData> { renderData(it) })
                         }
 
                 }
@@ -116,64 +116,6 @@ class PictureOfTheDayFragment : Fragment() {
                 //showLoading()
             }
             is PictureOfTheDayData.Error -> {
-                //showError(data.error.message)
-                toast(data.error.message)
-            }
-        }
-    }
-    private fun renderYesterday(data: PictureOfTheYesterdayData) {
-        when (data) {
-            is PictureOfTheYesterdayData.Success -> {
-                val serverResponseData = data.serverResponseData
-                val url = serverResponseData.url
-                if (url.isNullOrEmpty()) {
-                    //showError("Сообщение, что ссылка пустая")
-                    toast("Link is empty")
-                } else {
-                    //showSuccess()
-                    image_view.load(url) {
-                        lifecycle(this@PictureOfTheDayFragment)
-                        error(R.drawable.ic_load_error_vector)
-                        placeholder(R.drawable.ic_no_photo_vector)
-                    }
-                }
-                bottom_sheet_description.text = serverResponseData.explanation
-                bottom_sheet_description_header.text = serverResponseData.title
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
-            is PictureOfTheYesterdayData.Loading -> {
-                //showLoading()
-            }
-            is PictureOfTheYesterdayData.Error -> {
-                //showError(data.error.message)
-                toast(data.error.message)
-            }
-        }
-    }
-    private fun render2DaysAgo(data: PictureOfThe2DaysAgoData) {
-        when (data) {
-            is PictureOfThe2DaysAgoData.Success -> {
-                val serverResponseData = data.serverResponseData
-                val url = serverResponseData.url
-                if (url.isNullOrEmpty()) {
-                    //showError("Сообщение, что ссылка пустая")
-                    toast("Link is empty")
-                } else {
-                    //showSuccess()
-                    image_view.load(url) {
-                        lifecycle(this@PictureOfTheDayFragment)
-                        error(R.drawable.ic_load_error_vector)
-                        placeholder(R.drawable.ic_no_photo_vector)
-                    }
-                }
-                bottom_sheet_description.text = serverResponseData.explanation
-                bottom_sheet_description_header.text = serverResponseData.title
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
-            is PictureOfThe2DaysAgoData.Loading -> {
-                //showLoading()
-            }
-            is PictureOfThe2DaysAgoData.Error -> {
                 //showError(data.error.message)
                 toast(data.error.message)
             }

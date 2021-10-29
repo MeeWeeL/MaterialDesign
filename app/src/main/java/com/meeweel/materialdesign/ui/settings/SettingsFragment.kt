@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.meeweel.materialdesign.R
 import com.meeweel.materialdesign.databinding.SettingsFragmentLayoutBinding
 import com.meeweel.materialdesign.ui.MainActivity
@@ -34,16 +35,16 @@ class SettingsFragment : Fragment() {
             (requireActivity() as? MainActivity)?.let {
                 if (isChecked) {
                     it.changeTheme(R.style.SecondTheme)
-                    activity?.supportFragmentManager?.beginTransaction()
-                        ?.replace(R.id.container, PictureOfTheDayFragment.newInstance())
-                        ?.commitNow()
                 } else {
                     it.changeTheme(R.style.DefaultTheme)
-                    activity?.supportFragmentManager?.beginTransaction()
-                        ?.replace(R.id.container, PictureOfTheDayFragment.newInstance())
-                        ?.commitNow()
                 }
             }
+            requireFragmentManager().replaceFragment(PictureOfTheDayFragment.newInstance())
         }
     }
+}
+fun FragmentManager.replaceFragment(fragment: Fragment) {
+    this.beginTransaction()
+        .replace(R.id.container, fragment)
+        .commitNow()
 }
