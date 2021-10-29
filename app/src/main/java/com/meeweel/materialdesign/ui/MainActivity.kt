@@ -9,6 +9,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(ThemeHolder.theme)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -16,4 +17,12 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
     }
+    fun changeTheme(th: Int) {
+        ThemeHolder.theme = th
+        recreate()
+    }
+}
+
+object ThemeHolder {
+    var theme = R.style.DefaultTheme
 }

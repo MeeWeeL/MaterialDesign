@@ -7,10 +7,10 @@
         <item name="chipStyle">@style/MyDefaultCheapStyle</item>
         <item name="floatingActionButtonStyle">@style/MyFABStyle</item>
         <item name="bottomAppBarStyle">@style/MyBABStyle</item>
-        <item name="android:windowBackground">#EEFEFF</item>
+        <item name="android:windowBackground">#9FA8DA</item>
     </style>
     <style name="BSS">
-        <item name="android:background">#FFF0E2</item>
+        <item name="android:background">#999999</item>
     </style>
     <style name="SecondTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -19,7 +19,7 @@
         <item name="chipStyle">@style/MySecondDefaultCheapStyle</item>
         <item name="floatingActionButtonStyle">@style/MySecondFABStyle</item>
         <item name="bottomAppBarStyle">@style/MySecondBABStyle</item>
-        <item name="android:windowBackground">#FFFDE7</item>
+        <item name="android:windowBackground">#FFE0B2</item>
     </style>
     <style name="MyDefaultCheapStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="chipIconEnabled">true</item>
@@ -27,17 +27,17 @@
         <item name="checkedIcon">@drawable/ic_cloud_done</item>
         <item name="chipIconVisible">false</item>
         <item name="checkedIconVisible">true</item>
-        <item name="chipSurfaceColor">#BBDEFB</item>
+        <item name="chipSurfaceColor">#C5CAE9</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">#4A148C</item>
         <item name="chipEndPadding">10dp</item>
         <item name="chipStartPadding">10dp</item>
     </style>
     <style name="MyFABStyle" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="backgroundTint">#BBDEFB</item>
+        <item name="backgroundTint">#3F51B5</item>
     </style>
     <style name="MyBABStyle" parent="Widget.MaterialComponents.BottomAppBar">
-        <item name="backgroundTint">#64B5F6</item>
+        <item name="backgroundTint">#1A237E</item>
     </style>
     <style name="MySecondDefaultCheapStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="chipIconEnabled">true</item>
@@ -45,16 +45,16 @@
         <item name="checkedIcon">@drawable/ic_focus</item>
         <item name="chipIconVisible">false</item>
         <item name="checkedIconVisible">true</item>
-        <item name="chipSurfaceColor">#FFD180</item>
+        <item name="chipSurfaceColor">#FFB74D</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">#4A148C</item>
         <item name="chipEndPadding">10dp</item>
         <item name="chipStartPadding">10dp</item>
     </style>
     <style name="MySecondFABStyle" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="backgroundTint">#FF6D00</item>
+        <item name="backgroundTint">#F57C00</item>
     </style>
     <style name="MySecondBABStyle" parent="Widget.MaterialComponents.BottomAppBar">
-        <item name="backgroundTint">#FFAB40</item>
+        <item name="backgroundTint">#E65100</item>
     </style>
 </resources>
