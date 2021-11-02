@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/MaterialDesign">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"/>
+        <activity android:name=".ui.other.OthersActivity"/>
+        <activity android:name=".ui.other.PagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,44 +1,45 @@
-package com.meeweel.materialdesign.ui.picture
+package com.meeweel.materialdesign.ui.other
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.meeweel.materialdesign.BuildConfig
+import com.meeweel.materialdesign.ui.picture.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PictureOfTheDayViewModel(
+class OtherModel(
     private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayData> = MutableLiveData(),
-    private val retrofitImpl: PODRetrofitImpl = PODRetrofitImpl()
+    private val retrofitImpl: PODRetrofitOtherImpl = PODRetrofitOtherImpl()
 ) :
     ViewModel() {
 
-    fun getData(): LiveData<PictureOfTheDayData> {
+    fun getMoon(): LiveData<PictureOfTheDayData> {
         sendServerRequest(1)
         return liveDataForViewToObserve
     }
-    fun getYesterdayData(): LiveData<PictureOfTheDayData> {
+    fun getPlanet(): LiveData<PictureOfTheDayData> {
         sendServerRequest(2)
         return liveDataForViewToObserve
     }
-    fun get2DaysAgoData(): LiveData<PictureOfTheDayData> {
+    fun getWeather(): LiveData<PictureOfTheDayData> {
         sendServerRequest(3)
         return liveDataForViewToObserve
     }
 
-    private fun sendServerRequest(day: Int) {
-        liveDataForViewToObserve.value = PictureOfTheDayData.Loading(null)
+    private fun sendServerRequest(action: Int) {
         val apiKey: String = BuildConfig.NASA_API_KEY
+        val call = when (action) {
+            1 -> retrofitImpl.getRetrofitImpl().getMoon(apiKey)
+            2 -> retrofitImpl.getRetrofitImpl().getPlanet(apiKey)
+            3 -> retrofitImpl.getRetrofitImpl().getWeather(apiKey)
+            else -> retrofitImpl.getRetrofitImpl().getMoon(apiKey)
+        }
+        liveDataForViewToObserve.value = PictureOfTheDayData.Loading(null)
         if (apiKey.isBlank()) {
             PictureOfTheDayData.Error(Throwable("You need API key"))
         } else {
-            val call = when (day) {
-                1 -> retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey)
-                2 -> retrofitImpl.getRetrofitImpl().getPictureOfTheYesterday(apiKey)
-                3 -> retrofitImpl.getRetrofitImpl().getPictureOfThe2DaysAgo(apiKey)
-                else -> retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey)
-            }
             call.enqueue(object :
                 Callback<PODServerResponseData> {
                 override fun onResponse(
