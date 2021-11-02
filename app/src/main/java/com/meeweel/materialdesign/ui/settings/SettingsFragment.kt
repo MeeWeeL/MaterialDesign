@@ -11,7 +11,6 @@ import com.meeweel.materialdesign.R
 import com.meeweel.materialdesign.databinding.SettingsFragmentLayoutBinding
 import com.meeweel.materialdesign.ui.MainActivity
 import com.meeweel.materialdesign.ui.ThemeHolder
-import com.meeweel.materialdesign.ui.picture.PictureOfTheDayFragment
 
 class SettingsFragment : Fragment() {
 
@@ -39,7 +38,6 @@ class SettingsFragment : Fragment() {
                     it.changeTheme(R.style.DefaultTheme)
                 }
             }
-            requireFragmentManager().replaceFragment(PictureOfTheDayFragment.newInstance())
         }
     }
 }

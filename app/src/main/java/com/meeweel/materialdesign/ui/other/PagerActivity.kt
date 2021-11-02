@@ -15,6 +15,10 @@ import kotlinx.android.synthetic.main.other_fragment_layout.*
 import kotlinx.android.synthetic.main.other_fragment_layout.view.*
 import kotlinx.android.synthetic.main.other_fragments_activity_layout.*
 
+private const val TODAY = 0
+private const val YESTERDAY = 1
+private const val BEFORE_YESTERDAY = 2
+
 class PagerActivity  : AppCompatActivity() {
 
     lateinit var binding: OtherFragmentLayoutBinding
@@ -24,23 +28,21 @@ class PagerActivity  : AppCompatActivity() {
         setContentView(binding.root)
         view_pager.adapter = PagerAdapter(supportFragmentManager)
         tab_layout.setupWithViewPager(view_pager)
-        setTab(0)
+        setTab(TODAY)
 
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageSelected(position: Int) {
-                setTab(position)
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-                TODO("Not yet implemented")
             }
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-
+                setTab(position)
             }
         })
     }
@@ -48,15 +50,21 @@ class PagerActivity  : AppCompatActivity() {
     private fun setTab(position: Int) {
         val layoutInflater = LayoutInflater.from(this@PagerActivity)
 
-        tab_layout.getTabAt(0)?.customView = null
-        tab_layout.getTabAt(1)?.customView = null
-        tab_layout.getTabAt(2)?.customView = null
+        tab_layout.getTabAt(TODAY)?.customView = null
+        tab_layout.getTabAt(YESTERDAY)?.customView = null
+        tab_layout.getTabAt(BEFORE_YESTERDAY)?.customView = null
 
         setCustomTab(position, layoutInflater)
     }
 
     private fun setCustomTab(position: Int, inflator: LayoutInflater) {
         val cust = inflator.inflate(R.layout.custom_tab_moon, null)
+        cust.findViewById<AppCompatTextView>(R.id.custom_tab).text = when (position) {
+            TODAY -> "Moon"
+            YESTERDAY -> "Planet"
+            BEFORE_YESTERDAY -> "Whether"
+            else -> "Error"
+        }
         cust.findViewById<AppCompatTextView>(R.id.custom_tab)
             .setTextColor(
                 ContextCompat.getColor(
@@ -64,16 +72,16 @@ class PagerActivity  : AppCompatActivity() {
                     R.color.colorAccent
                 )
             )
-        tab_layout.getTabAt(0)?.customView = if (position == 0) cust else flater(0)
-        tab_layout.getTabAt(1)?.customView = if (position == 1) cust else flater(1)
-        tab_layout.getTabAt(2)?.customView = if (position == 2) cust else flater(2)
+        tab_layout.getTabAt(TODAY)?.customView = if (position == TODAY) cust else flater(TODAY)
+        tab_layout.getTabAt(YESTERDAY)?.customView = if (position == YESTERDAY) cust else flater(YESTERDAY)
+        tab_layout.getTabAt(BEFORE_YESTERDAY)?.customView = if (position == BEFORE_YESTERDAY) cust else flater(BEFORE_YESTERDAY)
     }
 
     private fun flater(tabb: Int) : View {
         val preTab = layoutInflater.inflate(R.layout.custom_tab_moon,null)
 
         when (tabb) {
-            0 -> {
+            TODAY -> {
                 preTab.custom_tab.setText("Moon")
                 preTab.custom_tab.setCompoundDrawables(
                     AppCompatResources.getDrawable(this, R.drawable.ic_moon),
@@ -81,7 +89,7 @@ class PagerActivity  : AppCompatActivity() {
                 )
                 return preTab
             }
-            1 -> {
+            YESTERDAY -> {
 
                 preTab.custom_tab.setText("Planet")
                 preTab.custom_tab.setCompoundDrawables(
@@ -90,7 +98,7 @@ class PagerActivity  : AppCompatActivity() {
                 )
                 return preTab
             }
-            2 -> {
+            BEFORE_YESTERDAY -> {
 
                 preTab.custom_tab.setText("Weather")
                 preTab.custom_tab.setCompoundDrawables(
