@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/switcher"
         app:layout_constraintEnd_toEndOf="parent"/>
-    <Button
+    <TextView
         android:id="@+id/set_theme_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,5 +51,7 @@
         android:text="@string/set_theme"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:backgroundTint="@color/dark_gray"/>
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:background="@color/dark_gray"/>
 </androidx.constraintlayout.motion.widget.MotionLayout>

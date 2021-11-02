@@ -6,6 +6,10 @@
         motion:constraintSetStart="@layout/settings_fragment_layout"
         motion:duration="1000">
 
-        <OnClick motion:targetId="@id/set_theme_button" />
+
+        <OnSwipe
+            motion:touchAnchorId="@id/wiki_button"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragUp"/>
     </Transition>
 </MotionScene>
