@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <geekbarains.material.util.EquilateralImageView
+        <com.meeweel.materialdesign.util.EquilateralImageView
             android:id="@+id/moon_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

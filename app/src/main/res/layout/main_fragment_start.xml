@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/_2_days_ago" />
             </com.google.android.material.chip.ChipGroup>
-            <geekbarains.material.util.EquilateralImageView
+            <com.meeweel.materialdesign.util.EquilateralImageView
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

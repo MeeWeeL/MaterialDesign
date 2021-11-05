@@ -41,8 +41,3 @@ class SettingsFragment : Fragment() {
         }
     }
 }
-fun FragmentManager.replaceFragment(fragment: Fragment) {
-    this.beginTransaction()
-        .replace(R.id.container, fragment)
-        .commitNow()
-}

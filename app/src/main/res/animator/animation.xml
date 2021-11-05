@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <objectAnimator
+            android:duration="1000"
+            android:valueTo="26sp"
+            android:valueFrom="12sp"
+            android:valueType="floatType"
+            android:propertyName="textSize"/>
+    </item>
+    <item>
+        <objectAnimator
+            android:duration="1000"
+            android:valueTo="12sp"
+            android:valueFrom="26sp"
+            android:valueType="floatType"
+            android:propertyName="textSize"/>
+    </item>
+</selector>
