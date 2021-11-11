@@ -17,5 +17,9 @@
             android:id="@+id/motion_nav"
             android:icon="@drawable/ic_send"
             android:title="Motion" />
+        <item
+            android:id="@+id/todo_nav"
+            android:icon="@drawable/ic_send"
+            android:title="ToDo" />
     </group>
 </menu>

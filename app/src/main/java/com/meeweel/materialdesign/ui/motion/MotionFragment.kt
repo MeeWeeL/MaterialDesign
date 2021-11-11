@@ -9,7 +9,6 @@ import android.view.animation.BounceInterpolator
 import androidx.fragment.app.Fragment
 import com.meeweel.materialdesign.databinding.MotionFragmentLayoutBinding
 import com.meeweel.materialdesign.databinding.SettingsFragmentLayoutBinding
-import kotlinx.android.synthetic.main.main_activity.*
 
 class MotionFragment : Fragment() {
 

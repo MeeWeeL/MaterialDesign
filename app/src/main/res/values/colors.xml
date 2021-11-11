@@ -16,4 +16,9 @@
     <color name="dark_gray">#696969</color>
     <color name="light_bottom_shit_color">#D3D3D3</color>
     <color name="dark_bottom_shit_color">#939393</color>
+    <color name="lazy_blue">#374889</color>
+    <color name="lazy_green">#479859</color>
+    <color name="lazy_red">#ed6565</color>
+    <color name="lazy_gray">#515151</color>
+    <color name="text_gray">#717171</color>
 </resources>
