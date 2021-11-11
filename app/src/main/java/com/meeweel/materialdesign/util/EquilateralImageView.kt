@@ -1,4 +1,4 @@
-package geekbarains.material.util
+package com.meeweel.materialdesign.util
 
 import android.content.Context
 import android.util.AttributeSet

@@ -11,9 +11,9 @@ import java.util.*
 interface PictureOfTheDayAPI {
 
     @GET("planetary/apod")
-    fun getPictureOfTheDay(@Query("api_key") apiKey: String): Call<PODServerResponseData>
+    fun getPictureOfTheDay(@Query("api_key") apiKey: String, @Query("date") yesterday: String = "2021-${(Date().month.toInt()+1).toString()}-${(Date().date.toInt()-1).toString()}"): Call<PODServerResponseData>
     @GET("planetary/apod")
-    fun getPictureOfTheYesterday(@Query("api_key") apiKey: String, @Query("date") yesterday: String = "2021-${(Date().month.toInt()+1).toString()}-${(Date().date.toInt()-1).toString()}"): Call<PODServerResponseData>
+    fun getPictureOfTheYesterday(@Query("api_key") apiKey: String, @Query("date") yesterday: String = "2021-${(Date().month.toInt()+1).toString()}-${(Date().date.toInt()-2).toString()}"): Call<PODServerResponseData>
     @GET("planetary/apod")
-    fun getPictureOfThe2DaysAgo(@Query("api_key") apiKey: String, @Query("date") yesterday: String = "2021-${(Date().month.toInt()+1).toString()}-${(Date().date.toInt()-2).toString()}"): Call<PODServerResponseData>
+    fun getPictureOfThe2DaysAgo(@Query("api_key") apiKey: String, @Query("date") yesterday: String = "2021-${(Date().month.toInt()+1).toString()}-${(Date().date.toInt()-3).toString()}"): Call<PODServerResponseData>
 }

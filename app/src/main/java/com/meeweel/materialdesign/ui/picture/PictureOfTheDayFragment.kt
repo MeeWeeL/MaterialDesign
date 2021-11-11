@@ -1,5 +1,6 @@
 package com.meeweel.materialdesign.ui.picture
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -20,6 +21,7 @@ import com.meeweel.materialdesign.ui.ThemeHolder
 import com.meeweel.materialdesign.ui.chips.ChipsFragment
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 import kotlinx.android.synthetic.main.fragment_chips.*
+import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class PictureOfTheDayFragment : Fragment() {
@@ -40,7 +42,7 @@ class PictureOfTheDayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         activity?.setTheme(ThemeHolder.theme)
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.main_fragment_start, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,6 +52,9 @@ class PictureOfTheDayFragment : Fragment() {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${input_edit_text.text.toString()}")
             })
+        }
+        image_view.setOnClickListener {
+            ObjectAnimator.ofFloat(image_view, "rotationY", animate_btn.rotationY + 360f).setDuration(1000).start()
         }
         setBottomAppBar(view)
         picture_choose_chips.setOnCheckedChangeListener { chipGroup, position ->

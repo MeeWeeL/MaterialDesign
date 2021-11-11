@@ -37,7 +37,7 @@ class PictureOfTheDayViewModel(
                 1 -> retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey)
                 2 -> retrofitImpl.getRetrofitImpl().getPictureOfTheYesterday(apiKey)
                 3 -> retrofitImpl.getRetrofitImpl().getPictureOfThe2DaysAgo(apiKey)
-                else -> retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey)
+                else -> retrofitImpl.getRetrofitImpl().getPictureOfThe2DaysAgo(apiKey)
             }
             call.enqueue(object :
                 Callback<PODServerResponseData> {

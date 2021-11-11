@@ -14,7 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp">
+            android:paddingEnd="10dp"
+            app:layoutDescription="@xml/motion_main_fragment">
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/wiki_button"
                 android:layout_width="wrap_content"
@@ -22,7 +24,7 @@
                 android:layout_marginEnd="8dp"
                 android:paddingTop="16dp"
                 android:layout_marginBottom="10dp"
-                android:visibility="invisible"
+                android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@+id/input_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/input_layout"
@@ -43,12 +45,12 @@
                 app:boxCornerRadiusBottomStart="20sp"
                 app:boxCornerRadiusTopEnd="20sp"
                 app:boxCornerRadiusTopStart="20sp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wiki_button"
                 app:layout_constraintBottom_toTopOf="@+id/picture_choose_chips"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:visibility="visible"
-                android:alpha="1">
+                android:visibility="gone"
+                android:alpha="0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_edit_text"

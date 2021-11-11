@@ -7,15 +7,19 @@ import com.meeweel.materialdesign.ui.other.fragments.MoonFragment
 import com.meeweel.materialdesign.ui.other.fragments.PlanetFragment
 import com.meeweel.materialdesign.ui.other.fragments.WeatherFragment
 
+private const val TODAY = 0
+private const val YESTERDAY = 1
+private const val BEFORE_YESTERDAY = 2
+
 class PagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     private val fragments = arrayOf(MoonFragment(), PlanetFragment(), WeatherFragment())
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> fragments[0]
-            1 -> fragments[1]
-            2 -> fragments[2]
-            else -> fragments[0]
+            0 -> fragments[TODAY]
+            1 -> fragments[YESTERDAY]
+            2 -> fragments[BEFORE_YESTERDAY]
+            else -> fragments[TODAY]
         }
     }
 

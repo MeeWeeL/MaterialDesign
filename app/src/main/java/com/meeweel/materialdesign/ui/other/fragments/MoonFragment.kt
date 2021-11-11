@@ -73,7 +73,7 @@ class MoonFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = PictureOfTheDayFragment()
+        fun newInstance() = MoonFragment()
         private var isMain = true
     }
 }
