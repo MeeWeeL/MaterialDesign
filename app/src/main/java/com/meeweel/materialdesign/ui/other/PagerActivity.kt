@@ -9,11 +9,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.meeweel.materialdesign.R
+import com.meeweel.materialdesign.databinding.CustomTabMoonBinding
 import com.meeweel.materialdesign.databinding.OtherFragmentLayoutBinding
 import kotlinx.android.synthetic.main.custom_tab_moon.view.*
-import kotlinx.android.synthetic.main.other_fragment_layout.*
-import kotlinx.android.synthetic.main.other_fragment_layout.view.*
-import kotlinx.android.synthetic.main.other_fragments_activity_layout.*
 
 private const val TODAY = 0
 private const val YESTERDAY = 1
@@ -26,11 +24,11 @@ class PagerActivity  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = OtherFragmentLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        view_pager.adapter = PagerAdapter(supportFragmentManager)
-        tab_layout.setupWithViewPager(view_pager)
+        binding.viewPager.adapter = PagerAdapter(supportFragmentManager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
         setTab(TODAY)
 
-        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageSelected(position: Int) {
             }
@@ -50,9 +48,9 @@ class PagerActivity  : AppCompatActivity() {
     private fun setTab(position: Int) {
         val layoutInflater = LayoutInflater.from(this@PagerActivity)
 
-        tab_layout.getTabAt(TODAY)?.customView = null
-        tab_layout.getTabAt(YESTERDAY)?.customView = null
-        tab_layout.getTabAt(BEFORE_YESTERDAY)?.customView = null
+        binding.tabLayout.getTabAt(TODAY)?.customView = null
+        binding.tabLayout.getTabAt(YESTERDAY)?.customView = null
+        binding.tabLayout.getTabAt(BEFORE_YESTERDAY)?.customView = null
 
         setCustomTab(position, layoutInflater)
     }
@@ -72,12 +70,13 @@ class PagerActivity  : AppCompatActivity() {
                     R.color.colorAccent
                 )
             )
-        tab_layout.getTabAt(TODAY)?.customView = if (position == TODAY) cust else flater(TODAY)
-        tab_layout.getTabAt(YESTERDAY)?.customView = if (position == YESTERDAY) cust else flater(YESTERDAY)
-        tab_layout.getTabAt(BEFORE_YESTERDAY)?.customView = if (position == BEFORE_YESTERDAY) cust else flater(BEFORE_YESTERDAY)
+        binding.tabLayout.getTabAt(TODAY)?.customView = if (position == TODAY) cust else flater(TODAY)
+        binding.tabLayout.getTabAt(YESTERDAY)?.customView = if (position == YESTERDAY) cust else flater(YESTERDAY)
+        binding.tabLayout.getTabAt(BEFORE_YESTERDAY)?.customView = if (position == BEFORE_YESTERDAY) cust else flater(BEFORE_YESTERDAY)
     }
 
     private fun flater(tabb: Int) : View {
+        val bind = CustomTabMoonBinding.inflate(layoutInflater)
         val preTab = layoutInflater.inflate(R.layout.custom_tab_moon,null)
 
         when (tabb) {

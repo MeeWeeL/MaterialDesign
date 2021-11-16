@@ -8,7 +8,6 @@ import com.meeweel.materialdesign.databinding.OtherFragmentsActivityLayoutBindin
 import com.meeweel.materialdesign.ui.other.fragments.MoonFragment
 import com.meeweel.materialdesign.ui.other.fragments.PlanetFragment
 import com.meeweel.materialdesign.ui.other.fragments.WeatherFragment
-import kotlinx.android.synthetic.main.other_fragments_activity_layout.*
 
 class OthersActivity : AppCompatActivity() {
 
@@ -17,7 +16,7 @@ class OthersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = OtherFragmentsActivityLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        nav_menu.setOnNavigationItemSelectedListener { item ->
+        binding.navMenu.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.moon -> {
                     supportFragmentManager.beginTransaction()
@@ -40,12 +39,12 @@ class OthersActivity : AppCompatActivity() {
                 else -> true
             }
         }
-        nav_menu.selectedItemId = R.id.moon
-        val badge = nav_menu.getOrCreateBadge(R.id.moon)
+        binding.navMenu.selectedItemId = R.id.moon
+        val badge = binding.navMenu.getOrCreateBadge(R.id.moon)
         badge.maxCharacterCount = 2
         badge.number = 1
 
-        nav_menu.setOnNavigationItemReselectedListener { item ->
+        binding.navMenu.setOnNavigationItemReselectedListener { item ->
             when (item.itemId) {
                 R.id.moon -> {
                     badge.number += 1

@@ -13,6 +13,7 @@ import com.meeweel.materialdesign.ui.motion.MotionFragment
 import com.meeweel.materialdesign.ui.other.OthersActivity
 import com.meeweel.materialdesign.ui.other.PagerActivity
 import com.meeweel.materialdesign.ui.settings.SettingsFragment
+import com.meeweel.materialdesign.ui.todolist.ToDoActivity
 import kotlinx.android.synthetic.main.bottom_navigation_layout.*
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
@@ -37,6 +38,10 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 }
                 R.id.pager_nav -> {
                     val intent = Intent(requireContext(), PagerActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.todo_nav -> {
+                    val intent = Intent(requireContext(), ToDoActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.motion_nav -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, MotionFragment())?.addToBackStack(null)?.commit()
