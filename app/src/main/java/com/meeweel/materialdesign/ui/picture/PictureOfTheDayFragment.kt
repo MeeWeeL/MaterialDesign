@@ -4,10 +4,18 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.BackgroundColorSpan
+import android.text.style.BulletSpan
+import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -113,8 +121,35 @@ class PictureOfTheDayFragment : Fragment() {
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
                 }
-                bottom_sheet_description.text = serverResponseData.explanation
-                bottom_sheet_description_header.text = serverResponseData.title
+                val headerText: Spanned = HtmlCompat.fromHtml("<ul><li><b><i>${serverResponseData.title}</i></b></li></ul>", HtmlCompat.FROM_HTML_MODE_LEGACY)
+                val descriptionText: SpannableString = SpannableString(serverResponseData.explanation)
+                val list = descriptionText.indexesOf("the", false)
+                for (i in list) {
+                    descriptionText.setSpan(
+                        ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.colorAccent)),
+                        i,
+                        i+3,
+                        Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+                    )
+                }
+                val list2 = descriptionText.indexesOf("The", false)
+                for (i in list2) {
+                    descriptionText.setSpan(
+                        ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.colorAccent)),
+                        i,
+                        i+3,
+                        Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                    )
+                }
+
+                descriptionText.setSpan(
+                    BackgroundColorSpan(ContextCompat.getColor(requireContext(),R.color.colorAccent)),
+                    20,
+                    32,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                bottom_sheet_description_header.text = headerText
+                bottom_sheet_description.text = descriptionText
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
             is PictureOfTheDayData.Loading -> {
@@ -126,7 +161,19 @@ class PictureOfTheDayFragment : Fragment() {
             }
         }
     }
+    fun SpannableString?.indexesOf(substr: String, ignoreCase: Boolean = true): List<Int> {
+        val list = mutableListOf<Int>()
+        if (this == null || substr.isBlank()) return list
 
+        var i = -1
+        while(true) {
+            i = indexOf(substr, i + 1, ignoreCase)
+            when (i) {
+                -1 -> return list
+                else -> list.add(i)
+            }
+        }
+    }
     private fun setBottomAppBar(view: View) {
         val context = activity as MainActivity
         context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
