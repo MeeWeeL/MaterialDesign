@@ -15,7 +15,8 @@
         <activity android:name=".ui.other.PagerActivity"/>
         <activity android:name=".ui.other.OthersActivity"/>
         <activity android:name=".ui.todolist.ToDoActivity"/>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"/>
+        <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

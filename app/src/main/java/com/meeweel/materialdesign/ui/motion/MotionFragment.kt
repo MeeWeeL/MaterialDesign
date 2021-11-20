@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.BounceInterpolator
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.meeweel.materialdesign.R
 import com.meeweel.materialdesign.databinding.MotionFragmentLayoutBinding
 import com.meeweel.materialdesign.databinding.SettingsFragmentLayoutBinding
 
@@ -31,6 +33,10 @@ class MotionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.pic1.setImageResource(R.drawable.anig1)
+        binding.pic2.setImageResource(R.drawable.anig2)
+        binding.pic3.setImageResource(R.drawable.anig3)
+        binding.pic4.setImageResource(R.drawable.anig4)
         binding.pic1.setOnClickListener {
             if (!pic1) {
                 it.animate().setDuration(500).rotationYBy(720f)
